@@ -15,7 +15,7 @@ package value_for_platform_family(
   'default' => 'tzdata'
 )
 
-case node.platform_family
+case node['platform_family']
 when 'rhel'
   include_recipe value_for_platform(
     'amazon' => { 'default' => 'timezone-ii::amazon' },
@@ -26,7 +26,7 @@ when 'debian', 'fedora', 'pld'
   include_recipe "timezone-ii::#{node.platform_family}"
 
 else
-  if node.os == "linux"
+  if node['os'] == "linux"
     # Load the generic Linux recipe if there's no better known way to change the
     # timezone.  Log a warning (unless this is known to be the best way on a
     # particular platform).

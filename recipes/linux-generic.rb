@@ -21,7 +21,7 @@ ruby_block "confirm timezone" do
   }
 end
 
-if node.timezone.use_symlink
+if node['timezone']['use_symlink']
   link localtime_path do
     to timezone_data_file
     owner 'root'
